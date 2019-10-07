@@ -8,28 +8,35 @@
 - - Pandas
 - - Pickle
 - - scikit-learn
+- - scipy
+- - random
+- - warnings
 
 ## How to run the project
-Download four .pk files(sample_breast_expression.pk, sample_breast_label.pk, sample_ov_expression.pk, sample_ov_label.pk) and two .py files(NetTL.py, NetSTL.py) into the same fold. Run python command and execute:
-`python3 NetTL(NetSTL).py sample_breast_expression.pk sample_breast_label.pk sample_ov_expression.pk sample_ov_label.pk` 
-The results will be exported as two txt files in the same fold. 
+Download eight .pk files(sample_breast_expression.pk, sample_breast_label.pk, sample_ov_expression.pk, sample_ov_label.pk, sample_PRAD.pkl, sample_PRAD_label.pkl, sample_ppi.pkl, sample_gene_names.pkl) and two .py files(NetTL_three_domains.py, NetSTL_three_domains.py) into the same fold. Run python command and execute:
+`python3 NetTL(NetSTL)_three_domains.py` 
+The results will be exported as txt files in the same fold. 
 
 ## File description 
-* **sample_ov_expression.pk:** : **Ovarian Cancer** gene expression data set. The size of the data is 50 x 200, 50 samples and 200 genes. The value range is [0,20.4273].
+* **sample_OV.pkl:** : **Ovarian Cancer** gene expression data set. The size of the data is 100 x 500, 100 samples and 500 genes. 
 
-* **sample_ov_label.pk:** : **Ovarian Cancer** label data. The size of it is 50.
+* **sample_OV_label.pkl:** : **Ovarian Cancer** label data. The size of it is 100.
 
-* **sample_breast_expression.pk:** This is a sample file of **Breast Cancer** gene expression set. The size of the data is 50 x 200, 50 samples and 200 genes. The value range is [0,20.3229].
+* **sample_BRCA.pkl:** This is a sample file of **Breast Cancer** gene expression set. The size of the data is 100 x 500, 100 samples and 200 genes. 
 
-* **sample_breast_label.pk:** : **Breast Cancer** label data. The size of it is 50.
+* **sample_BRCA_label.pkl:** : **Breast Cancer** label data. The size of it is 100.
 
-* **NetTL.py and NetSTL.py:** execution files.
+* **sample_PRAD.pkl:** This is a sample file of **Prostate adenocarcinoma Cancer** gene expression set. The size of the data is 100 x 500, 100 samples and 200 genes. 
 
-## Data clean 
-The genes with low mean and standard deviation are removed. The initial threshold is 50%, and it can be changed in the read_data function of the NetTL.py and NetSTL.py files.
+* **sample_PRAD_label.pkl:** : **Prostate adenocarcinoma Cancer** label data. The size of it is 100.
 
-## Cross-validation
-All models will run though the same cross validation process together. For both data sets, 20% of samples are randomly selected for test, 20% for validation, the rest samples are for training. This process will repeat 50 times, and the average performance on test set are reported. 
+* **sample_gene_names.pkl**: 500 gene names.
+
+* **sample_ppi.pkl**: **Protein-protein interaction networks**, dict file with 7932 keys.
+
+* **NetTL(NetSTL)_three_domains.py:** execution files.
+
+
 
 
 
