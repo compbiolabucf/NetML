@@ -54,20 +54,11 @@ def whole_process(data_1_all, data_2_all, data_3_all, label_1_all, label_2_all,
     auprc2 = []
     roc3 = []
     auprc3 = []
-    roc1r = []
-    auprc1r = []
-    roc2r = []
-    auprc2r = []
-    roc3r = []
-    auprc3r = []
     for itern in range(100):
         print(itern)
         chose1_p=[]
-        chose1_r=[]
         chose2_p=[]
-        chose2_r=[]
         chose3_p=[]
-        chose3_r=[]
         data1_train, data1_test, label1_train, label1_test, data2_train, data2_test, label2_train, label2_test, data3_train, data3_test, label3_train, label3_test = cross_validation(
             data_1_all, data_2_all, data_3_all, label_1_all, label_2_all, label_3_all, 20)
         for i in range(data1_train.shape[1]):         
@@ -77,12 +68,6 @@ def whole_process(data_1_all, data_2_all, data_3_all, label_1_all, label_2_all,
                 chose2_p.append(i)
             if stats.ttest_ind(data3_train[:,i][label3_train==1],data3_train[:,i][label3_train==-1])[1]<0.05:
                 chose3_p.append(i)
-            if stats.ranksums(data1_train[:,i][label1_train==1],data1_train[:,i][label1_train==-1])[1]<0.05:
-                chose1_r.append(i)
-            if stats.ranksums(data2_train[:,i][label2_train==1],data2_train[:,i][label2_train==-1])[1]<0.05:
-                chose2_r.append(i)
-            if stats.ranksums(data3_train[:,i][label3_train==1],data3_train[:,i][label3_train==-1])[1]<0.05:
-                chose3_r.append(i)
         temp1,temp2=svc_result(data1_train[:,chose1_p], data1_test[:,chose1_p], label1_train, label1_test)
         roc1.append(temp1)
         auprc1.append(temp2)
@@ -92,15 +77,6 @@ def whole_process(data_1_all, data_2_all, data_3_all, label_1_all, label_2_all,
         temp1,temp2=svc_result(data3_train[:,chose3_p], data3_test[:,chose3_p], label3_train, label3_test)
         roc3.append(temp1)
         auprc3.append(temp2)       
-        temp1,temp2=svc_result(data1_train[:,chose1_r], data1_test[:,chose1_r], label1_train, label1_test)
-        roc1r.append(temp1)
-        auprc1r.append(temp2)
-        temp1,temp2=svc_result(data2_train[:,chose2_r], data2_test[:,chose2_r], label2_train, label2_test)
-        roc2r.append(temp1)
-        auprc2r.append(temp2)
-        temp1,temp2=svc_result(data3_train[:,chose3_r], data3_test[:,chose3_r], label3_train, label3_test)
-        roc3r.append(temp1)
-        auprc3r.append(temp2)   
     with open('bench2_f1.txt','w') as f:
         print('AUC','AUPRC',file=f)
         for i,j in zip(roc1,auprc1):
@@ -113,26 +89,14 @@ def whole_process(data_1_all, data_2_all, data_3_all, label_1_all, label_2_all,
         print('AUC','AUPRC',file=f)
         for i,j in zip(roc3,auprc3):
             print(i,j,file=f)   
-    with open('bench2r_f1.txt','w') as f:
-        print('AUC','AUPRC',file=f)
-        for i,j in zip(roc1r,auprc1r):
-            print(i,j,file=f)
-    with open('bench2r_f2.txt','w') as f:
-        print('AUC','AUPRC',file=f)
-        for i,j in zip(roc2r,auprc2r):
-            print(i,j,file=f)
-    with open('bench2r_f3.txt','w') as f:
-        print('AUC','AUPRC',file=f)
-        for i,j in zip(roc3r,auprc3r):
-            print(i,j,file=f)   
 
 
 if __name__ == "__main__":
     ### This is the parameter area
     n=100
     names = [
-        'BRCA.pkl', 'BRCA_label.pkl', 'OV.pkl', 'OV_label.pkl', 'PRAD.pkl',
-        'PRAD_label.pkl', 'gene_names.pkl'
+        'sample_BRCA.pkl', 'sample_BRCA_label.pkl', 'sample_OV.pkl', 'sample_OV_label.pkl', 'sample_PRAD.pkl',
+        'sample_PRAD_label.pkl', 'sample_gene_names.pkl'
     ]
     data_1_all, data_2_all, data_3_all, label_1_all, label_2_all, label_3_all = read_data(
         names)
