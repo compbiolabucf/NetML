@@ -535,17 +535,17 @@ def whole_process(n, data_1_all, data_2_all, data_3_all, label_1_all,
 
         temp_report.close()
     final_report = open('final_report_model2_8.txt', 'w')
-    print(model1_roc_train_max_all / (i + 1), file=temp_report)
-    print(final_model1_roc_all / (i + 1), file=temp_report)
-    print(model1_auprc_max_all / (i + 1), file=temp_report)
+    print(model1_roc_train_max_all / (i + 1), file=final_report)
+    print(final_model1_roc_all / (i + 1), file=final_report)
+    print(model1_auprc_max_all / (i + 1), file=final_report)
 
-    print(model2_roc_train_max_all / (i + 1), file=temp_report)
-    print(final_model2_roc_all / (i + 1), file=temp_report)
-    print(model2_auprc_max_all / (i + 1), file=temp_report)
+    print(model2_roc_train_max_all / (i + 1), file=final_report)
+    print(final_model2_roc_all / (i + 1), file=final_report)
+    print(model2_auprc_max_all / (i + 1), file=final_report)
 
-    print(model3_roc_train_max_all / (i + 1), file=temp_report)
-    print(final_model3_roc_all / (i + 1), file=temp_report)
-    print(model3_auprc_max_all / (i + 1), file=temp_report)
+    print(model3_roc_train_max_all / (i + 1), file=final_report)
+    print(final_model3_roc_all / (i + 1), file=final_report)
+    print(model3_auprc_max_all / (i + 1), file=final_report)
     final_report.close()
 
 
