@@ -278,11 +278,9 @@ def train_model(n, data1_train, data1_validation, label1_train,
         with open('model2_f1_1.txt','a') as f:
             for i,j in zip(fv1,gene_names):
                 print(i,j, file=f)
-        '''
         with open('model2_f2_1.txt','a') as f:
             for i,j in zip(fv2_val,gene_names):
                 print(i,j, file=f)
-        '''
         with open('model2_f3_1.txt','a') as f:
             for i,j in zip(fv3,gene_names):
                 print(i,j, file=f)
@@ -381,15 +379,15 @@ def model2(n, data1_train, data1_validation, data1_test, label1_train,
         data2_train, data2_validation, label2_train, label2_validation,
         data3_train, data3_validation, label3_train, label3_validation, alpha,
         gamma1, gamma2, gamma3, gamma4,gene_names)
-    test_roc1, test_roc2, test_roc3, test_auprc1, test_auprc2, test_auprc3=0,0,0,0,0,0
-    '''
+    # test_roc1, test_roc2, test_roc3, test_auprc1, test_auprc2, test_auprc3=0,0,0,0,0,0
+    
     test_roc1, test_roc2, test_roc3, test_auprc1, test_auprc2, test_auprc3 = test_model(
         n, data1_train, data1_validation, data1_test, label1_train,
         label1_validation, label1_test, data2_train, data2_validation,
         data2_test, label2_train, label2_validation, label2_test, data3_train,
         data3_validation, data3_test, label3_train, label3_validation,
         label3_test, alpha, gamma1, gamma2, gamma3, gamma4)
-    '''
+    
     return train_roc1, train_roc2, train_roc3, train_auprc1, train_auprc2, train_auprc3, test_roc1, test_roc2, test_roc3, test_auprc1, test_auprc2, test_auprc3
 
 
